@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from "react"
 import { NumberField } from "@/components/NumberField"
 import { calculateDepth } from "./utils"
-import { NotesList } from "./components/NotesList"
 
 export const App: FC = () => {
   const [depth, setDepth] = useState<number>(0)
@@ -34,7 +33,6 @@ export const App: FC = () => {
         />
       </div>
       <div className="my-2 font-medium text-xl">Результат: {depth.toFixed(3)} мкм</div>
-      <NotesList depth={depth} />
     </div>
   )
 }
