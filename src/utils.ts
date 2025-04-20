@@ -1,8 +1,8 @@
-export function calculateDepth(a: number, b: number, c: number): number {
-  const result: number = ((c - b) / (b - a)) * 0.27
-  return Number.isNaN(result) ? 0 : result
+export function calculateThickness(a: number, b: number, c: number): number {
+  return parseToDouble((((c - b) / (b - a)) * 0.27).toString())
 }
 
-export function getIsWrongDepth(depth: number, needfulDepth: number, inaccuracy: number): boolean {
-  return !(depth > needfulDepth - inaccuracy && depth < needfulDepth + inaccuracy)
+export function parseToDouble(value: string): number {
+  const result: number = Number(value.replace(",", ".")) ?? 0
+  return Number.isNaN(result) ? 0 : result
 }

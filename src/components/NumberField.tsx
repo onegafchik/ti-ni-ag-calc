@@ -1,18 +1,10 @@
-import React, { FC, useState } from "react"
+import React, { FC } from "react"
 
-interface NumberFieldProps {
+export const NumberField: FC<{
   placeholder: string
-  handle: (currentValue: number) => void
-}
-
-export const NumberField: FC<NumberFieldProps> = ({ placeholder, handle }) => {
-  const [currentValue, setCurrentValue] = useState<string>("")
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrentValue(event.target.value)
-    handle(Number(event.target.value.replace(",", ".")) ?? 0)
-  }
-
+  value: string
+  onChange: (value: React.ChangeEvent<HTMLInputElement>) => void
+}> = ({ placeholder, value, onChange }) => {
   return (
     <input
       className="py-2.5 px-5 font-medium bg-gray-100 rounded focus:outline-yellow-300 invalid:bg-red-100"
@@ -21,8 +13,8 @@ export const NumberField: FC<NumberFieldProps> = ({ placeholder, handle }) => {
       inputMode="decimal"
       pattern="[0-9]+([\.,][0-9]+)?"
       placeholder={placeholder}
-      onChange={handleChange}
-      value={currentValue}
+      onChange={onChange}
+      value={value}
     />
   )
 }
