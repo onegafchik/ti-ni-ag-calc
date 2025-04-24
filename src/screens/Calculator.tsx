@@ -2,7 +2,7 @@ import { Button } from "@/components/Button"
 import { NumberField } from "@/components/NumberField"
 import { useCalculationsStore } from "@/store"
 import { calculateThickness, parseToDouble } from "@/utils"
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect, useRef, useState } from "react"
 import { FaRegSave, FaRegTrashAlt } from "react-icons/fa"
 
 type Lines = {
@@ -24,6 +24,8 @@ export const Calculator: FC = () => {
 
   const [thickness, setThickness] = useState<number>(0)
 
+  const firstInputRef = useRef<HTMLInputElement>(null)
+
   const updateLine = (line: keyof Lines, value: string) => {
     setLines({
       ...lines,
@@ -42,6 +44,8 @@ export const Calculator: FC = () => {
 
   const clear = () => {
     setLines(Object.assign({}, emptyLines))
+
+    firstInputRef.current && firstInputRef.current.focus()
   }
 
   useEffect(() => {
@@ -55,6 +59,7 @@ export const Calculator: FC = () => {
       <div className="mb-2 font-medium text-xl">Измеренные значения</div>
       <div className="flex flex-col gap-2">
         <NumberField
+          ref={firstInputRef}
           placeholder="A"
           value={lines.a}
           onChange={(event) => updateLine("a", event.target.value)}

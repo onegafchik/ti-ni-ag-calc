@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import { Calculation } from "./types"
+import { Calculation } from "@/types"
 import { nanoid } from "nanoid"
 
 type CalculationsStore = {
