@@ -3,6 +3,6 @@ export function calculateThickness(a: number, b: number, c: number): number {
 }
 
 export function parseToDouble(value: string): number {
-  const result: number = Number(value.replace(",", ".")) ?? 0
-  return Number.isNaN(result) ? 0 : result
+  const result = Number(value.replace(",", "."))
+  return Number.isFinite(result) ? result : 0
 }
