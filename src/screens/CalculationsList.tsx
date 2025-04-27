@@ -11,7 +11,7 @@ export const CalculationsList: FC = () => {
         <>
           <div className="my-2 font-medium text-xl">Расчёты</div>
           <div className="flex flex-col gap-2">
-            {calculationsList.map((calculation) => (
+            {[...calculationsList].reverse().map((calculation) => (
               <CalculationNote
                 key={calculation.id}
                 onDelete={() => remove(calculation.id)}
